@@ -1,6 +1,6 @@
 #pragma once
 #include <map>
-#include "Enterprise.h"
+#include <optional>
 #include "Inventory.h"
 
 // A matching engine is a per-good object that stores all sellers and prices
@@ -8,11 +8,14 @@
 class MatchingEngine
 {
 public:
-	void listItem(int aPrice, Enterprise& aSeller);
+	MatchingEngine(GoodType aGoodType) : theGoodType(aGoodType) {}
 
-	void purchase(Inventory& aPurchaser);
+	void listItem(int aPrice, Inventory& aSeller);
+	bool purchase(Inventory& aPurchaser);
+	std::optional<int> getBestPrice();
 
 private:
-	std::multimap<int, Enterprise&> theOffersPerPriceLevel{}; // Ask price in gold mapped to each Enterprise that has an offer
+	const GoodType& theGoodType;
+	std::multimap<int, Inventory&> theOffersPerPriceLevel{}; // Ask price in gold mapped to each enterprise's Inventory that has an offer
 };
 

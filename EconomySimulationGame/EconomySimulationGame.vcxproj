@@ -128,6 +128,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EconomySimulationGame.cpp" />
+    <ClCompile Include="Enterprise.cpp" />
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Marketplace.cpp" />
+    <ClCompile Include="MatchingEngine.cpp" />
+    <ClCompile Include="Person.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Enterprise.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Marketplace.h" />
+    <ClInclude Include="MatchingEngine.h" />
+    <ClInclude Include="Person.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

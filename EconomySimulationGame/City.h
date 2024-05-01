@@ -19,8 +19,8 @@ public:
 
 private:
 	const std::string theName;
-	std::vector<Person> thePersons;
-	std::vector<Enterprise> theEnterprises;
+	std::vector<Person>& thePersons;
+	std::vector<Enterprise>& theEnterprises;
 	const Marketplace theMarketplace;
 };
 

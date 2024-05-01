@@ -8,8 +8,8 @@
 class City
 {
 public:
-	City(std::string aName, std::vector<Person> aPersons, std::vector<Enterprise> aEnterprises) :
-		theName(aName), thePersons(std::move(aPersons)), theEnterprises(std::move(aEnterprises)), theMarketplace() {}
+	City(std::string aName, std::vector<Person>&& aPersons, std::vector<Enterprise>&& aEnterprises) :
+		theName(aName), thePersons(aPersons), theEnterprises(aEnterprises), theMarketplace() {}
 
 	void enterprisesProduceGoods();
 	void enterprisesBuyGoods();

@@ -8,7 +8,7 @@
 class MatchingEngine
 {
 public:
-	MatchingEngine(GoodType aGoodType) : theGoodType(aGoodType) {}
+	MatchingEngine(const GoodType& aGoodType) : theGoodType(aGoodType) {}
 
 	void listItem(int aPrice, Inventory& aSeller);
 	bool purchase(Inventory& aPurchaser);

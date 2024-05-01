@@ -1,16 +1,16 @@
 #include "Inventory.h"
 
-bool Inventory::hasAtLeast(GoodType aGood, int aCount)
+bool Inventory::hasAtLeast(const GoodType& aGood, int aCount)
 {
     return numberOfGood(aGood) >= aCount;
 }
 
-void Inventory::addGoods(GoodType aGood, int aCount)
+void Inventory::addGoods(const GoodType& aGood, int aCount)
 {
     theInventory[aGood.theInventoryId] += aCount;
 }
 
-int Inventory::numberOfGood(GoodType aGood)
+int Inventory::numberOfGood(const GoodType& aGood)
 {
     return theInventory[aGood.theInventoryId];
 }

@@ -8,6 +8,9 @@ public:
 	constexpr GoodType(std::string_view aDisplayName, int aId) : theDisplayName(aDisplayName), theInventoryId(aId) {}
 	const std::string_view theDisplayName;
 	const int theInventoryId;
+
+	GoodType(GoodType&) = delete;
+	GoodType operator=(GoodType&) = delete;
 };
 
 namespace Good

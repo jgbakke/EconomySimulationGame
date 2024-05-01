@@ -1,8 +1,21 @@
 #include "Inventory.h"
 
+Inventory::Inventory(std::initializer_list<std::pair<const GoodType&, int>> aStartingGoods)
+{
+    for (auto myStartingGood : aStartingGoods)
+    {
+        addGoods(myStartingGood.first, myStartingGood.second);
+    }
+}
+
 bool Inventory::hasAtLeast(const GoodType& aGood, int aCount)
 {
-    return numberOfGood(aGood) >= aCount;
+    return hasAtLeast(aGood.theInventoryId, aCount);
+}
+
+bool Inventory::hasAtLeast(int aGoodId, int aCount)
+{
+    return theInventory[aGoodId] >= aCount;
 }
 
 void Inventory::addGoods(const GoodType& aGood, int aCount)

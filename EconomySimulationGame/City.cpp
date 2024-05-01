@@ -2,6 +2,10 @@
 
 void City::enterprisesProduceGoods()
 {
+	for (auto& myEnterprise : theEnterprises)
+	{
+
+	}
 }
 
 void City::enterprisesBuyGoods()

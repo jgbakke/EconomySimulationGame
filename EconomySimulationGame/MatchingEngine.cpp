@@ -27,6 +27,7 @@ bool MatchingEngine::purchase(Inventory& aPurchaser)
 	Inventory& mySeller = theOffersPerPriceLevel.begin()->second;
 	mySeller.addGoods(Good::GOLD, myBestPrice);
 	theOffersPerPriceLevel.erase(theOffersPerPriceLevel.begin());
+	return true;
 }
 
 std::optional<int> MatchingEngine::getBestPrice()

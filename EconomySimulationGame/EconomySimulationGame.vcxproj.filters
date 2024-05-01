@@ -68,5 +68,8 @@
     <ClInclude Include="City.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Good.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

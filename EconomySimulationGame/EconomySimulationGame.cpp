@@ -43,17 +43,18 @@ static void gameLoop()
 	}
 }
 
-int main()
-{
-	gameLoop();
-}
-
 void manualTest() {
 	Inventory myBuyGuy;
 	myBuyGuy.addGoods(Good::GOLD, 100);
 
 	Inventory mySellGuy;
 	mySellGuy.addGoods(Good::BEER, 2);
+
+	std::cout << std::boolalpha;
+	std::cout << "Can BuyGuy make food? " << Good::FOOD.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;
+	std::cout << "Can SellGuy make food? " << Good::FOOD.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
+	std::cout << "Can BuyGuy make beer? " << Good::BEER.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
+	std::cout << "Can SellGuy make beer? " << Good::BEER.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
 
 	std::cout << "Sell guy Beer: " << mySellGuy.numberOfGood(Good::BEER) << std::endl;
 	std::cout << "Sell guy Money: " << mySellGuy.numberOfGood(Good::GOLD) << std::endl;
@@ -72,7 +73,7 @@ void manualTest() {
 	std::cout << "Buy guy Beer: " << myBuyGuy.numberOfGood(Good::BEER) << std::endl;
 	std::cout << "Buy guy Money: " << myBuyGuy.numberOfGood(Good::GOLD) << std::endl;
 
-	std::cout << "Can he purchase? " << std::boolalpha << myMatchingEngine.purchase(myBuyGuy) << std::endl;
+	std::cout << "Can he purchase? " << myMatchingEngine.purchase(myBuyGuy) << std::endl;
 	std::cout << "Sell guy Beer: " << mySellGuy.numberOfGood(Good::BEER) << std::endl;
 	std::cout << "Sell guy Money: " << mySellGuy.numberOfGood(Good::GOLD) << std::endl;
 
@@ -87,4 +88,21 @@ void manualTest() {
 	std::cout << "Buy guy Beer: " << myBuyGuy.numberOfGood(Good::BEER) << std::endl;
 	std::cout << "Buy guy Money: " << myBuyGuy.numberOfGood(Good::GOLD) << std::endl;
 
+	std::cout << "Can BuyGuy make food? " << Good::FOOD.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;
+	std::cout << "Can SellGuy make food? " << Good::FOOD.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
+	std::cout << "Can BuyGuy make beer? " << Good::BEER.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
+	std::cout << "Can SellGuy make beer? " << Good::BEER.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
+
+	myBuyGuy.addGoods(Good::FOOD, 1);
+	std::cout << "Can BuyGuy make beer? " << Good::BEER.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
+	std::cout << "He still needs more food: " << Good::BEER.additionalResourcesNeededToProduce(myBuyGuy.theInventory)[Good::FOOD.theInventoryId] << std::endl;
+
+	myBuyGuy.addGoods(Good::FOOD, 1);
+	std::cout << "Can BuyGuy make beer? " << Good::BEER.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
+	std::cout << "He still needs more food: " << Good::BEER.additionalResourcesNeededToProduce(myBuyGuy.theInventory)[Good::FOOD.theInventoryId] << std::endl;
+}
+
+int main()
+{
+	manualTest();
 }

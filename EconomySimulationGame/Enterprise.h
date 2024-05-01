@@ -10,6 +10,8 @@ public:
 		theInventory.addGoods(Good::GOLD, aStartingGold);
 	}
 
+	void produceGoods();
+
 private:
 	const GoodType& theGoodType;
 	Person& theOwner;

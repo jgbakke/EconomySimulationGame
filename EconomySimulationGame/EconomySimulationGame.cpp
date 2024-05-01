@@ -51,11 +51,6 @@ void manualTest() {
 	mySellGuy.addGoods(Good::BEER, 2);
 
 	std::cout << std::boolalpha;
-	std::cout << "Can BuyGuy make food? " << Good::FOOD.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;
-	std::cout << "Can SellGuy make food? " << Good::FOOD.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
-	std::cout << "Can BuyGuy make beer? " << Good::BEER.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
-	std::cout << "Can SellGuy make beer? " << Good::BEER.canAffordToBeProduced(myBuyGuy.theInventory) << std::endl;;
-
 	std::cout << "Sell guy Beer: " << mySellGuy.numberOfGood(Good::BEER) << std::endl;
 	std::cout << "Sell guy Money: " << mySellGuy.numberOfGood(Good::GOLD) << std::endl;
 

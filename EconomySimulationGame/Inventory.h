@@ -13,7 +13,7 @@ public:
 	void addGoods(const GoodType& aGood, int aCount);
 	int numberOfGood(const GoodType& aGood);
 
-//private:
+private:
 	GoodType::GoodsArray theInventory;
 };
 

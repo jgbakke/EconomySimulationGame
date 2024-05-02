@@ -9,6 +9,28 @@ Inventory::Inventory(std::initializer_list<std::pair<const GoodType&, int>> aSta
     }
 }
 
+Inventory Inventory::operator-(const GoodType::GoodsArray& aOther) const
+{
+    Inventory myDifferenceInventory{};
+    std::transform(theInventory.begin(), theInventory.end(),
+        aOther.begin(),
+        myDifferenceInventory.theInventory.begin(),
+        [](const int& aThisAmount, const int& aOtherAmount) { return aThisAmount - aOtherAmount; });
+
+    return myDifferenceInventory;
+}
+
+void Inventory::operator-=(const GoodType::GoodsArray& aOther)
+{
+    Inventory mySubtractedInventory = *this - aOther;
+    theInventory = mySubtractedInventory.theInventory;
+}
+
+Inventory Inventory::operator-(const Inventory& aOther) const
+{
+    return *this - aOther.theInventory;
+}
+
 bool Inventory::hasAtLeast(const GoodType& aGood, int aCount) const
 {
     return hasAtLeast(aGood.theInventoryId, aCount);
@@ -23,7 +45,7 @@ void Inventory::addGoods(const GoodType& aGood, int aCount)
 {
     theInventory[aGood.theInventoryId] += aCount;
 
-    if (&aGood != &Good::GOLD)
+    if (aGood.theInventoryId != Good::GOLD.theInventoryId)
     {
         theStoredResourcesCount += aCount;
     }
@@ -41,17 +63,12 @@ bool Inventory::isAtStorageCapacity() const
 
 bool Inventory::canAffordToProduce(const GoodType& aGood) const
 {
-    auto myAdditionalNeeded = additionalResourcesNeededToProduce(aGood);
-    return !std::any_of(myAdditionalNeeded.begin(), myAdditionalNeeded.end(), [](const int& aAdditionalNeeded) {return aAdditionalNeeded > 0; });
+    auto myExcessResources = excessResourcesForProduction(aGood);
+    return std::all_of(myExcessResources.begin(), myExcessResources.end(), [](const int& aExcessCount) {return aExcessCount >= 0; });
 }
 
-GoodType::GoodsArray Inventory::additionalResourcesNeededToProduce(const GoodType& aGood) const
+GoodType::GoodsArray Inventory::excessResourcesForProduction(const GoodType& aGood) const
 {
-    GoodType::GoodsArray myAdditionalResourcesNeeded{};
-    std::transform(theInventory.begin(), theInventory.end(),
-        aGood.productionInputResources().begin(),
-        myAdditionalResourcesNeeded.begin(),
-        [](const int& aHasAmount, const int& aRequiredAmount) { return std::max(aRequiredAmount - aHasAmount, 0); });
-
-    return myAdditionalResourcesNeeded;
+    Inventory myExcessInventory = *this - aGood.productionInputResources();
+    return myExcessInventory.theInventory;
 }

@@ -10,7 +10,7 @@ public:
 		theInventory.addGoods(Good::GOLD, aStartingGold);
 	}
 
-	void produceGoods();
+	void produceGoods(int aCurrentTime);
 
 private:
 	const GoodType& theGoodType;

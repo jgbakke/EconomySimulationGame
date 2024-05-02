@@ -1,10 +1,10 @@
 #include "City.h"
 
-void City::enterprisesProduceGoods()
+void City::enterprisesProduceGoods(int aCurrentTime)
 {
 	for (auto& myEnterprise : theEnterprises)
 	{
-
+		myEnterprise.produceGoods(aCurrentTime);
 	}
 }
 

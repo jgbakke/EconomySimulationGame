@@ -35,7 +35,7 @@ static void gameLoop()
 
 	for (int myTurn = 0; myTurn < 300; myTurn++)
 	{
-		myMainCity.enterprisesProduceGoods();
+		myMainCity.enterprisesProduceGoods(myTurn);
 		myMainCity.enterprisesBuyGoods();
 		myMainCity.enterprisesSellGoods();
 		myMainCity.personsBuyGoods();
@@ -86,5 +86,5 @@ void manualTest() {
 
 int main()
 {
-	manualTest();
+	gameLoop();
 }

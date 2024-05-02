@@ -11,7 +11,7 @@ public:
 	City(std::string aName, std::vector<Person>&& aPersons, std::vector<Enterprise>&& aEnterprises) :
 		theName(aName), thePersons(aPersons), theEnterprises(aEnterprises), theMarketplace() {}
 
-	void enterprisesProduceGoods();
+	void enterprisesProduceGoods(int aCurrentTime);
 	void enterprisesBuyGoods();
 	void enterprisesSellGoods();
 	void personsBuyGoods();

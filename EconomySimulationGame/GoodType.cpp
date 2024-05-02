@@ -1,28 +1,24 @@
 #include "GoodType.h"
-#include <algorithm>
-#include <iterator>
 
 GoodType::GoodType(std::string_view aDisplayName, int aId, GoodProductionCosts aProductionInputs) : theDisplayName(aDisplayName), theInventoryId(aId)
 {
+	int myTotalAmountOfResourcesToProduce = 0;
+
 	for (auto& myProductionInput : aProductionInputs)
 	{
 		theInputResources[myProductionInput.first.theInventoryId] = myProductionInput.second;
+		myTotalAmountOfResourcesToProduce += myProductionInput.second;
 	}
+
+	theProducingIsNetStorageIncrease = myTotalAmountOfResourcesToProduce == 0;
 }
 
-bool GoodType::canAffordToBeProduced(const GoodType::GoodsArray& aProducerInventory)
+bool GoodType::producingIsNetStorageIncrease() const
 {
-	auto myAdditionalNeeded = additionalResourcesNeededToProduce(aProducerInventory);
-	return !std::any_of(myAdditionalNeeded.begin(), myAdditionalNeeded.end(), [](const int& aAdditionalNeeded) {return aAdditionalNeeded > 0; });
+	return theProducingIsNetStorageIncrease;
 }
 
-GoodType::GoodsArray GoodType::additionalResourcesNeededToProduce(const GoodType::GoodsArray& aProducerInventory)
+const GoodType::GoodsArray& GoodType::productionInputResources() const
 {
-	GoodType::GoodsArray myAdditionalResourcesNeeded{};
-	std::transform(theInputResources.begin(), theInputResources.end(),
-		aProducerInventory.begin(),
-		myAdditionalResourcesNeeded.begin(),
-		[](const int& aRequired, const int& aHasCount) { return std::max(aRequired - aHasCount, 0); });
-
-	return myAdditionalResourcesNeeded;
+	return theInputResources;
 }

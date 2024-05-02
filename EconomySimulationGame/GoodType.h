@@ -22,11 +22,12 @@ public:
 	GoodType(GoodType&) = delete;
 	GoodType operator=(GoodType&) = delete;
 
-	bool canAffordToBeProduced(const GoodType::GoodsArray& aProducerInventory);
-	GoodsArray additionalResourcesNeededToProduce(const GoodType::GoodsArray& aProducerInventory);
+	bool producingIsNetStorageIncrease() const;
+	const GoodsArray& productionInputResources() const;
 
 private:
 	GoodsArray theInputResources{};
+	bool theProducingIsNetStorageIncrease;
 };
 
 namespace Good

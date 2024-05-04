@@ -16,5 +16,6 @@ private:
 	const GoodType& theGoodType;
 	Person& theOwner;
 	Inventory theInventory;
+	int theLastProducedAtTime = 0;
 };
 

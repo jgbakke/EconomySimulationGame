@@ -3,17 +3,18 @@
 
 void Enterprise::produceGoods(int aCurrentTime)
 {
-	if (aCurrentTime % theGoodType.defaultTimeToProduce() != 0)
+	if (!theInventory.canAffordToProduce(theGoodType) || (theInventory.isAtStorageCapacity() && theGoodType.producingIsNetStorageIncrease()))
 	{
 		return;
 	}
 
-	if (!theInventory.canAffordToProduce(theGoodType) || (theInventory.isAtStorageCapacity() && theGoodType.producingIsNetStorageIncrease()))
+	if ((aCurrentTime - theLastProducedAtTime) < theGoodType.defaultTimeToProduce())
 	{
 		return;
 	}
 
 	theInventory -= theGoodType.productionInputResources();
 	theInventory.addGoods(theGoodType, 1);
+	theLastProducedAtTime = aCurrentTime;
 	std::cout << static_cast<void*>(this) << " produced " << theGoodType.theDisplayName << " at " << aCurrentTime << std::endl;
 }

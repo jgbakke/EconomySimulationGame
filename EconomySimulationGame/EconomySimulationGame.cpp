@@ -18,11 +18,11 @@ static std::vector<Enterprise> generateStartingEnterprises(std::vector<Person>& 
 {
 	std::vector<Enterprise> myStartingEnterprises{};
 	myStartingEnterprises.emplace_back(Good::WOOD, aCitizens[20], 5);
-	myStartingEnterprises.emplace_back(Good::WOOD, aCitizens[21], 40);
-	myStartingEnterprises.emplace_back(Good::FOOD, aCitizens[22], 0);
-	myStartingEnterprises.emplace_back(Good::FOOD, aCitizens[23], 10);
-	myStartingEnterprises.emplace_back(Good::FOOD, aCitizens[24], 20);
-	myStartingEnterprises.emplace_back(Good::BEER, aCitizens[25], 10);
+	//myStartingEnterprises.emplace_back(Good::WOOD, aCitizens[21], 40);
+	//myStartingEnterprises.emplace_back(Good::FOOD, aCitizens[22], 0);
+	//myStartingEnterprises.emplace_back(Good::FOOD, aCitizens[23], 10);
+	//myStartingEnterprises.emplace_back(Good::FOOD, aCitizens[24], 20);
+	//myStartingEnterprises.emplace_back(Good::BEER, aCitizens[25], 10);
 	return myStartingEnterprises;
 }
 
